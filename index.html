@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Илья Сорвин — System Architect</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Илья Сорвин — System Architect | CTO/CIO">
+    <meta property="og:description" content="Архитектор высоконагруженных систем. Highload, CV/ML/AI, микросервисы. Опыт внедрения AI-агентов и построения IT-стратегии.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://sorvin.dev">
+    <meta property="og:image" content="https://sorvin.dev/og-preview.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="profile:first_name" content="Илья">
+    <meta property="profile:last_name" content="Сорвин">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Илья Сорвин — System Architect">
+    <meta name="twitter:description" content="Архитектор высоконагруженных систем. Highload, CV/ML/AI, микросервисы.">
+    <meta name="twitter:image" content="https://sorvin.dev/og-preview.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -76,6 +93,41 @@
         
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
+        /* PDF Download Button */
+        .pdf-download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .pdf-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6);
+        }
+        .pdf-download-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+        .pdf-download-btn .btn-text {
+            display: inline;
+        }
+        .pdf-download-btn .btn-text-short {
+            display: none;
+        }
+
         /* Sections */
         section { padding: 30px 0; }
         .section-title {
@@ -96,19 +148,16 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
-        /* Shine Overlay - Common for all golden cards */
         .shine-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Gradient for glass reflection */
             background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 55%, transparent 60%);
-            transform: translateX(-100%); /* Start off-screen */
+            transform: translateX(-100%);
             pointer-events: none;
             z-index: 2;
-            transition: 0s; /* Instant for hover */
+            transition: 0s;
         }
 
-        /* Hover Shine Trigger for About & Education */
         .golden-card:hover {
             border-color: rgba(255, 255, 255, 0.2);
         }
@@ -217,12 +266,11 @@
             background: var(--bg-color); border: 3px solid var(--accent-purple); z-index: 2;
         }
         
-        /* Date Above Card - Updated Styles */
         .timeline-date {
             text-align: right;
             margin-bottom: 10px;
-            font-size: 1.1rem; /* Larger */
-            font-weight: 300; /* Thinner */
+            font-size: 1.1rem;
+            font-weight: 300;
             color: var(--text-secondary);
             padding-right: 10px;
             letter-spacing: 0.5px;
@@ -322,7 +370,261 @@
         }
         .contact-link:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
 
-        /* Responsive */
+        /* ============================================
+           PRINT STYLES
+           ============================================ */
+        @media print {
+            /* Reset for print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            @page {
+                size: A4;
+                margin: 1.5cm 1.5cm 2cm;
+            }
+            
+            body {
+                background: #fff !important;
+                color: #1a1a2e !important;
+                font-size: 11pt;
+                line-height: 1.4;
+            }
+            
+            /* Hide non-essential elements */
+            .bg-container,
+            .pdf-download-btn,
+            .shine-overlay,
+            .photo-ring,
+            .tap-hint,
+            .ai-badge,
+            .card-front,
+            .typewriter-text {
+                display: none !important;
+            }
+            
+            /* Header adjustments */
+            header {
+                padding: 0 0 20px 0 !important;
+                border-bottom: 2px solid #1a1a2e;
+                margin-bottom: 20px;
+            }
+            
+            .photo-container {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto 15px;
+            }
+            
+            .profile-photo {
+                width: 80px;
+                height: 80px;
+                border: 2px solid #1a1a2e;
+                box-shadow: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+                color: #1a1a2e !important;
+                -webkit-text-fill-color: #1a1a2e !important;
+                margin-bottom: 5px;
+            }
+            
+            .hero-content p {
+                color: #4a4a6a !important;
+                font-size: 0.95rem;
+            }
+            
+            /* Cards for print */
+            .golden-card,
+            .card {
+                background: #f8f9fa !important;
+                border: 1px solid #ddd !important;
+                border-radius: 8px;
+                box-shadow: none;
+                backdrop-filter: none;
+                page-break-inside: avoid;
+                margin-bottom: 15px;
+            }
+            
+            .golden-content {
+                padding: 20px;
+            }
+            
+            /* Show card back content directly */
+            .card-back {
+                position: static !important;
+                transform: none !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                background: transparent !important;
+                padding: 20px !important;
+            }
+            
+            .card-back h3 {
+                color: #1a1a2e !important;
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            .achievement-list li {
+                color: #4a4a6a !important;
+                font-size: 0.85rem;
+                padding-left: 15px;
+                margin-bottom: 6px;
+            }
+            
+            .achievement-list li::before {
+                color: #10b981 !important;
+            }
+            
+            /* About section */
+            .about-col h3 {
+                color: #1a1a2e !important;
+                font-size: 0.95rem;
+            }
+            
+            .about-col p,
+            .about-list li {
+                color: #4a4a6a !important;
+                font-size: 0.85rem;
+            }
+            
+            .about-list li::before {
+                color: #8b5cf6 !important;
+            }
+            
+            .about-grid {
+                gap: 20px;
+            }
+            
+            /* AI Section */
+            .ai-title {
+                font-size: 1.3rem;
+                color: #1a1a2e !important;
+            }
+            
+            .ai-item {
+                background: #fff !important;
+                border: 1px solid #eee;
+            }
+            
+            .ai-item h4 {
+                color: #1a1a2e !important;
+            }
+            
+            .ai-item p {
+                color: #4a4a6a !important;
+            }
+            
+            /* Skills */
+            .section-title {
+                color: #1a1a2e !important;
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            
+            .skill-tag {
+                background: #f0f0f0 !important;
+                color: #4a4a6a !important;
+                border: 1px solid #ddd;
+                font-size: 0.75rem;
+                padding: 3px 8px;
+            }
+            
+            .skill-tag.primary {
+                background: #e8e4f8 !important;
+                color: #6b4fd6 !important;
+                border-color: #c4b5e8;
+            }
+            
+            /* Timeline */
+            .timeline-container {
+                padding-left: 30px;
+            }
+            
+            .timeline-line {
+                background: #8b5cf6 !important;
+                width: 1px;
+            }
+            
+            .timeline-dot {
+                left: -23px;
+                width: 10px;
+                height: 10px;
+                border-width: 2px;
+                background: #fff !important;
+            }
+            
+            .timeline-date {
+                font-size: 0.85rem;
+                color: #4a4a6a !important;
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            
+            .experience-item {
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+            }
+            
+            /* Education */
+            .edu-year {
+                color: #1a1a2e !important;
+            }
+            
+            .edu-text {
+                color: #4a4a6a !important;
+                font-size: 0.85rem;
+            }
+            
+            /* Footer */
+            footer {
+                border-top: 1px solid #ddd;
+                padding: 20px 0;
+                margin-top: 20px;
+            }
+            
+            .preferences {
+                gap: 15px;
+                font-size: 0.8rem;
+            }
+            
+            .pref-item {
+                color: #4a4a6a !important;
+            }
+            
+            footer h2 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            
+            footer p {
+                color: #4a4a6a !important;
+                margin-bottom: 10px;
+            }
+            
+            .contact-link {
+                background: #1a1a2e !important;
+                padding: 8px 20px;
+                font-size: 0.85rem;
+                border-radius: 20px;
+            }
+            
+            /* Prevent orphans and widows */
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+            }
+            
+            img {
+                max-width: 100%;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
         @media (max-width: 900px) {
             .timeline-container { padding-left: 30px; }
             .timeline-dot { left: -17px; }
@@ -339,6 +641,16 @@
             .golden-content { padding: 25px; }
             .preferences { flex-direction: column; gap: 10px; }
             .about-grid { grid-template-columns: 1fr; gap: 20px; }
+            
+            .pdf-download-btn {
+                padding: 10px 14px;
+            }
+            .pdf-download-btn .btn-text {
+                display: none;
+            }
+            .pdf-download-btn .btn-text-short {
+                display: inline;
+            }
         }
     </style>
 </head>
@@ -351,6 +663,17 @@
         <div class="orb orb-3" id="orb3"></div>
         <div class="orb orb-4" id="orb4"></div>
     </div>
+
+    <!-- PDF Download Button -->
+    <a href="resume.pdf" class="pdf-download-btn" download title="Скачать PDF-версию резюме">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span class="btn-text">Скачать PDF</span>
+        <span class="btn-text-short">PDF</span>
+    </a>
 
     <!-- Header -->
     <header id="home">
@@ -369,7 +692,6 @@
         <!-- AI FOCUS CARD -->
         <div class="ai-wrapper" data-aos="fade-up">
             <div class="golden-card" id="aiCard">
-                <!-- Scroll-based shine for top card -->
                 <div class="shine-overlay" id="aiShine"></div>
                 <div class="golden-content ai-content-custom">
                     <span class="ai-badge">Технологический фокус</span>
@@ -395,10 +717,9 @@
             </div>
         </div>
 
-        <!-- ABOUT ME SECTION (Golden Style) -->
+        <!-- ABOUT ME SECTION -->
         <div class="about-section" data-aos="fade-up">
             <div class="golden-card">
-                <!-- Hover-based shine for others -->
                 <div class="shine-overlay hoverable"></div>
                 <div class="golden-content">
                     <div class="about-grid">
@@ -441,7 +762,7 @@
                     <span class="skill-tag primary">Legacy модернизация</span>
                     <span class="skill-tag primary">API Design</span>
                     <span class="skill-tag primary">Управление командами</span>
-                    <span class="skill-tag primary">IT Статегия</span>
+                    <span class="skill-tag primary">IT Стратегия</span>
                     <span class="skill-tag primary">Менторинг</span>
                     <span class="skill-tag primary">Event-Driven Architecture</span>
                     <span class="skill-tag primary">Code Review</span>
@@ -524,7 +845,7 @@
                         <div class="card-face card-back">
                             <h3>Достижения:</h3>
                             <ul class="achievement-list">
-                                <li>Трансформация монолита в микросервисы. Time-to-Market сокращен с 3-4 мес. до 1-1.5 мес.</li>
+                                <li>Трансформация монолита в микросервисы. Time-to-Market сокращён с 3-4 мес. до 1-1.5 мес.</li>
                                 <li>Оптимизация CV/ML pipeline (NVDEC/NUMA): +20-30% производительности без апгрейда железа.</li>
                                 <li>Проекты для НЛМК, ЕВРАЗ, Северсталь в закрытых контурах.</li>
                                 <li>Разработка "Цифрового ИИ-отдела" для автоматизации разработки (R&D).</li>
@@ -637,7 +958,7 @@
                                 <li>Внедрение SAP ERP (TOPO, BI). Интеграция 3 заводов.</li>
                                 <li>Единая транспортная сеть и SSO.</li>
                                 <li>Внедрение единого ServiceDesk для предприятий группы и SLA службы ИТ.</li>
-                                <li>АСУТП энергоучета.</li>
+                                <li>АСУТП энергоучёта.</li>
                             </ul>
                         </div>
                     </div>
@@ -684,7 +1005,7 @@
                                             <span class="tech-tag skill-tag-card">ITIL/ITSM</span>
                                             <span class="tech-tag skill-tag-card">SLA</span>
                                             <span class="tech-tag skill-tag-card">Управление командами</span>
-                                            <span class="tech-tag skill-tag-card">Взаимодествие с вендорами</span>
+                                            <span class="tech-tag skill-tag-card">Взаимодействие с вендорами</span>
                                         </div>
                                     </div>
                                 </div>
@@ -705,10 +1026,9 @@
             <p class="tap-hint">* Нажмите на карточку для просмотра деталей</p>
         </section>
 
-        <!-- Education (Golden Style) -->
+        <!-- Education -->
         <div class="education-block" data-aos="fade-up">
             <div class="golden-card">
-                <!-- Hover-based shine -->
                 <div class="shine-overlay hoverable"></div>
                 <div class="golden-content">
                     <h3 style="margin-bottom: 10px; font-size: 1.2rem;">Образование</h3>
@@ -769,7 +1089,6 @@
         requestAnimationFrame(animateBackground);
 
         // --- AI CARD SCROLL SHINE ---
-        // Only for the first AI card
         const aiCard = document.getElementById('aiCard');
         const aiShine = document.getElementById('aiShine');
         
@@ -777,7 +1096,6 @@
             if(!aiCard) return;
             const rect = aiCard.getBoundingClientRect();
             const scrollProgress = 1 - (rect.top / window.innerHeight); 
-            // Move shine based on scroll
             aiShine.style.transform = `translateX(${scrollProgress * 200 - 100}%) skewX(-15deg)`;
         });
 
